@@ -207,15 +207,21 @@ namespace pacientesCsharp.Vistas
 
 
         public void registrar ()
-        {
-            if (Validaciones.ValidaFormulario(Formulario))
-            {
-                MessageBox.Show("todos los campos OK");
-                Validaciones.LimpiarFormulario(Formulario);
 
+        {
+            string nombre = campoNombre.Text;
+            string apellidos = campoApellidos.Text;
+            string direccion = campoDIreccion.Text;
+            string ciudad = comboCiudad.Text;
+
+            if (Validaciones.ValidaFormulario(Formulario))
+
+            {
+                MessageBox.Show("Registro exitoso");
+                Validaciones.LimpiarFormulario(Formulario);
             }
-            
+
         }
-    
+
     }
 }
