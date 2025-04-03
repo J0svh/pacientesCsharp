@@ -1,5 +1,4 @@
-﻿using pacientesCsharp.Vistas;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace pacientesCsharp
+namespace pacientesCsharp.Vistas
 {
-    public partial class Login: Form
+    public partial class TablaPacientes: Form
     {
-        public Login()
+        public TablaPacientes()
         {
             InitializeComponent();
         }
 
-        private void botonAcceder_Click(object sender, EventArgs e)
+        private void tabla_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Principal p = new Principal();
-            p.Show();
+
         }
     }
 }

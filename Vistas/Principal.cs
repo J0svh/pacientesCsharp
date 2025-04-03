@@ -16,5 +16,28 @@ namespace pacientesCsharp.Vistas
         {
             InitializeComponent();
         }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void botonPaciente_Click(object sender, EventArgs e)
+        {
+            AltaPacientes ap = new AltaPacientes();
+            ap.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AltaUsuario au = new AltaUsuario();
+            au.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TablaPacientes tp = new TablaPacientes();
+            tp.Show();
+        }
     }
 }
