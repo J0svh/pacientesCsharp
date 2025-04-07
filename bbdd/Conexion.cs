@@ -1,4 +1,5 @@
 ﻿using pacientesCsharp.modelo;
+using pacientesCsharp.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -114,6 +115,37 @@ namespace pacientesCsharp.bbdd
             {
                 conn.Close();
             }
+        }
+
+        public static DataTable CargarPacientes()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID");
+            dt.Columns.Add("NOMBRE");
+            dt.Columns.Add("APELLIDOS");
+            dt.Columns.Add("DIRECCION");
+            dt.Columns.Add("CIUDAD");
+            DataRow dr = dt.NewRow();
+
+            string consulta = "SELECT id, nombre, apellidos, direccion, ciudad FROM pacientes";
+            SQLiteConnection conn = new SQLiteConnection(url);
+            conn.Open();
+            SQLiteCommand command = new SQLiteCommand(consulta, conn);
+            SQLiteDataReader resultados = command.ExecuteReader();
+
+            while (resultados.Read()) {
+                dr = dt.NewRow();
+                dr["ID"] = resultados.GetInt32(0);
+                dr["NOMBRE"] = Encriptado.Desencriptar(resultados.GetString((1)));
+                dr["APELLIDOS"] = Encriptado.Desencriptar(resultados.GetString((2)));
+                dr["DIRECCION"] = Encriptado.Desencriptar(resultados.GetString((3)));
+                dr["CIUDAD"] = Encriptado.Desencriptar(resultados.GetString((4)));
+                dt.Rows.Add(dr);
+
+            } resultados.Close();
+            conn.Close();
+
+            return dt;
         }
 
         public static bool CompruebaUsuario (string usuario)
