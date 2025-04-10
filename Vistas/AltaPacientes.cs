@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pacientesCsharp.bbdd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace pacientesCsharp.Vistas
         public AltaPacientes()
         {
             InitializeComponent();
+            Conexion.CargarCOmboCIudades(comboCiudad);
         }
 
         private void label4_Click(object sender, EventArgs e)

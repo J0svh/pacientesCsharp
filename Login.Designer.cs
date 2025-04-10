@@ -1,4 +1,8 @@
-﻿namespace pacientesCsharp
+﻿using pacientesCsharp.bbdd;
+using pacientesCsharp.Vistas;
+using System.Windows.Forms;
+
+namespace pacientesCsharp
 {
     partial class Login
     {
@@ -150,6 +154,28 @@
         private System.Windows.Forms.Button botonAcceder;
         private System.Windows.Forms.TextBox campoPass;
         private System.Windows.Forms.TextBox campoUsuario;
+
+        public void acceder()
+        {
+            string usuarios;
+            string pass;
+
+            usuarios = campoUsuario.Text;
+            pass = Utilidades.Encriptado.Encriptar(campoPass.Text);
+
+            if (bbdd.Conexion.Acceder(usuarios, pass))
+            {
+                Principal p = new Principal();
+                p.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Usuario Y contraseñas Erroneos");
+                campoUsuario.Text = "";
+                campoPass.Text = "";
+            }
+        }
     }
 }
 

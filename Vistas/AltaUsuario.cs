@@ -16,5 +16,10 @@ namespace pacientesCsharp.Vistas
         {
             InitializeComponent();
         }
+
+        private void botonAcceder_Click(object sender, EventArgs e)
+        {
+            Registrar();
+        }
     }
 }

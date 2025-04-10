@@ -20,8 +20,7 @@ namespace pacientesCsharp
 
         private void botonAcceder_Click(object sender, EventArgs e)
         {
-            Principal p = new Principal();
-            p.Show();
+            acceder();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace pacientesCsharp.Utilidades
+
 {
     class Validaciones
     {
@@ -21,9 +22,10 @@ namespace pacientesCsharp.Utilidades
                         return false;
                     
                 } 
-                if (c is ComboBox combobox && combobox.SelectedIndex ==null)
+                if (c is ComboBox combobox && combobox.SelectedItem ==null)
                 {
-                    MessageBox.Show("Debe seleccionar un elemento en el combo " + c.Tag, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe seleccionar " + c.Tag, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
                 }
                 
             }

@@ -1,4 +1,5 @@
-﻿using pacientesCsharp.Utilidades;
+﻿using pacientesCsharp.bbdd;
+using pacientesCsharp.Utilidades;
 using System.Windows.Forms;
 
 namespace pacientesCsharp.Vistas
@@ -33,16 +34,16 @@ namespace pacientesCsharp.Vistas
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.Formulario = new System.Windows.Forms.GroupBox();
-            this.comboCiudad = new System.Windows.Forms.ComboBox();
-            this.campoDIreccion = new System.Windows.Forms.TextBox();
-            this.campoApellidos = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.botonRegistrar = new System.Windows.Forms.Button();
-            this.campoNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.campoNombre = new System.Windows.Forms.TextBox();
+            this.campoApellidos = new System.Windows.Forms.TextBox();
+            this.campoDIreccion = new System.Windows.Forms.TextBox();
+            this.comboCiudad = new System.Windows.Forms.ComboBox();
             this.Formulario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -62,10 +63,10 @@ namespace pacientesCsharp.Vistas
             this.Formulario.Controls.Add(this.comboCiudad);
             this.Formulario.Controls.Add(this.campoDIreccion);
             this.Formulario.Controls.Add(this.campoApellidos);
+            this.Formulario.Controls.Add(this.campoNombre);
             this.Formulario.Controls.Add(this.label4);
             this.Formulario.Controls.Add(this.label3);
             this.Formulario.Controls.Add(this.botonRegistrar);
-            this.Formulario.Controls.Add(this.campoNombre);
             this.Formulario.Controls.Add(this.label2);
             this.Formulario.Controls.Add(this.label1);
             this.Formulario.Location = new System.Drawing.Point(61, 43);
@@ -74,34 +75,6 @@ namespace pacientesCsharp.Vistas
             this.Formulario.TabIndex = 6;
             this.Formulario.TabStop = false;
             this.Formulario.Text = "REGISTRO PACIENTE";
-            // 
-            // comboCiudad
-            // 
-            this.comboCiudad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboCiudad.FormattingEnabled = true;
-            this.comboCiudad.Items.AddRange(new object[] {
-            "Seleccione:"});
-            this.comboCiudad.Location = new System.Drawing.Point(210, 216);
-            this.comboCiudad.Name = "comboCiudad";
-            this.comboCiudad.Size = new System.Drawing.Size(104, 21);
-            this.comboCiudad.TabIndex = 4;
-            this.comboCiudad.Tag = "CIUDAD";
-            // 
-            // campoDIreccion
-            // 
-            this.campoDIreccion.Location = new System.Drawing.Point(210, 163);
-            this.campoDIreccion.Name = "campoDIreccion";
-            this.campoDIreccion.Size = new System.Drawing.Size(154, 20);
-            this.campoDIreccion.TabIndex = 3;
-            this.campoDIreccion.Tag = "DIRECCION";
-            // 
-            // campoApellidos
-            // 
-            this.campoApellidos.Location = new System.Drawing.Point(210, 117);
-            this.campoApellidos.Name = "campoApellidos";
-            this.campoApellidos.Size = new System.Drawing.Size(124, 20);
-            this.campoApellidos.TabIndex = 2;
-            this.campoApellidos.Tag = "APELLIDOS";
             // 
             // label4
             // 
@@ -133,18 +106,10 @@ namespace pacientesCsharp.Vistas
             this.botonRegistrar.UseVisualStyleBackColor = false;
             this.botonRegistrar.Click += new System.EventHandler(this.botonRegistrar_Click);
             // 
-            // campoNombre
-            // 
-            this.campoNombre.Location = new System.Drawing.Point(210, 67);
-            this.campoNombre.Name = "campoNombre";
-            this.campoNombre.Size = new System.Drawing.Size(104, 20);
-            this.campoNombre.TabIndex = 1;
-            this.campoNombre.Tag = "NOMBRE";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 124);
+            this.label2.Location = new System.Drawing.Point(71, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 1;
@@ -170,6 +135,42 @@ namespace pacientesCsharp.Vistas
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // campoNombre
+            // 
+            this.campoNombre.Location = new System.Drawing.Point(210, 64);
+            this.campoNombre.Name = "campoNombre";
+            this.campoNombre.Size = new System.Drawing.Size(104, 20);
+            this.campoNombre.TabIndex = 6;
+            this.campoNombre.Tag = "NOMBRE";
+            // 
+            // campoApellidos
+            // 
+            this.campoApellidos.Location = new System.Drawing.Point(210, 114);
+            this.campoApellidos.Name = "campoApellidos";
+            this.campoApellidos.Size = new System.Drawing.Size(124, 20);
+            this.campoApellidos.TabIndex = 7;
+            this.campoApellidos.Tag = "APELLIDOS";
+            // 
+            // campoDIreccion
+            // 
+            this.campoDIreccion.Location = new System.Drawing.Point(210, 163);
+            this.campoDIreccion.Name = "campoDIreccion";
+            this.campoDIreccion.Size = new System.Drawing.Size(154, 20);
+            this.campoDIreccion.TabIndex = 8;
+            this.campoDIreccion.Tag = "DIRECCION";
+            // 
+            // comboCiudad
+            // 
+            this.comboCiudad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboCiudad.FormattingEnabled = true;
+            this.comboCiudad.Items.AddRange(new object[] {
+            "Seleccione:"});
+            this.comboCiudad.Location = new System.Drawing.Point(210, 208);
+            this.comboCiudad.Name = "comboCiudad";
+            this.comboCiudad.Size = new System.Drawing.Size(104, 21);
+            this.comboCiudad.TabIndex = 9;
+            this.comboCiudad.Tag = "CIUDAD";
+            // 
             // AltaPacientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,7 +180,10 @@ namespace pacientesCsharp.Vistas
             this.Controls.Add(this.Formulario);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AltaPacientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AltaPacientes";
             this.Formulario.ResumeLayout(false);
             this.Formulario.PerformLayout();
@@ -193,15 +197,16 @@ namespace pacientesCsharp.Vistas
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox Formulario;
-        private System.Windows.Forms.TextBox campoNombre;
-        private System.Windows.Forms.TextBox campoApellidos;
-        private System.Windows.Forms.TextBox campoDIreccion;
-        private System.Windows.Forms.ComboBox comboCiudad;
+        private System.Windows.Forms.Button botonRegistrar;
+        private TextBox campoNombre;
+        private TextBox campoApellidos;
+        private ComboBox comboCiudad;
+        private TextBox campoDIreccion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button botonRegistrar;
+        
 
 
 
@@ -209,19 +214,30 @@ namespace pacientesCsharp.Vistas
         public void registrar ()
 
         {
-            string nombre = campoNombre.Text;
-            string apellidos = campoApellidos.Text;
-            string direccion = campoDIreccion.Text;
-            string ciudad = comboCiudad.Text;
+            string nombre = Utilidades.Encriptado.Encriptar(campoNombre.Text);
+            string apellidos = Utilidades.Encriptado.Encriptar(campoApellidos.Text);
+            string direccion = Utilidades.Encriptado.Encriptar(campoDIreccion.Text);
+            string ciudad = Utilidades.Encriptado.Encriptar(comboCiudad.Text);
 
             if (Validaciones.ValidaFormulario(Formulario))
 
             {
-                MessageBox.Show("Registro exitoso");
+                modelo.Paciente paciente = new modelo.Paciente(nombre, apellidos, direccion, ciudad);
+                if (!Conexion.RegistrarPaciente(paciente))
+                {
+                    MessageBox.Show("Error al registrar el paciente");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Paciente registrado correctamente");
+                }
+               
                 Validaciones.LimpiarFormulario(Formulario);
             }
 
         }
 
+        
     }
 }

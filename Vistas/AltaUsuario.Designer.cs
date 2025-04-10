@@ -1,4 +1,8 @@
-﻿namespace pacientesCsharp.Vistas
+﻿using pacientesCsharp.bbdd;
+using pacientesCsharp.modelo;
+using System.Windows.Forms;
+
+namespace pacientesCsharp.Vistas
 {
     partial class AltaUsuario
     {
@@ -97,6 +101,7 @@
             this.botonAcceder.TabIndex = 4;
             this.botonAcceder.Text = "Acceder";
             this.botonAcceder.UseVisualStyleBackColor = false;
+            this.botonAcceder.Click += new System.EventHandler(this.botonAcceder_Click);
             // 
             // campoPass
             // 
@@ -151,7 +156,10 @@
             this.Controls.Add(this.Formulario);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AltaUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AltaUsuario";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Formulario.ResumeLayout(false);
@@ -172,5 +180,33 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox campoNombreCOmpleto;
+
+        public void Registrar()
+        {
+            string nombre = campoNombreCOmpleto.Text;
+            string usuario = campoUsuario.Text;
+            string pass = Utilidades.Encriptado.Encriptar(campoPass.Text);
+
+            if (Utilidades.Validaciones.ValidaFormulario(Formulario))
+            {
+                if (Conexion.CompruebaUsuario(usuario))
+                {
+                    MessageBox.Show("El usuario ya existe. Por favor, elige otro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    Usuario nuevoUsuario = new Usuario(nombre, usuario, pass);
+                    if (Conexion.RegistrarUsuario(nuevoUsuario))
+                    {
+                        MessageBox.Show("Usuario registrado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al registrar el usuario. Inténtalo de nuevo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pacientesCsharp.bbdd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace pacientesCsharp.Vistas
         public TablaPacientes()
         {
             InitializeComponent();
+            tabla.DataSource = Conexion.CargarPacientes();
         }
 
         private void tabla_CellContentClick(object sender, DataGridViewCellEventArgs e)

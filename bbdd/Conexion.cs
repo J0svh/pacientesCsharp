@@ -44,7 +44,7 @@ namespace pacientesCsharp.bbdd
             }
         }
 
-        public  void CargarCOmboCIudades(System.Windows.Forms.ComboBox cb)
+        public static void CargarCOmboCIudades(System.Windows.Forms.ComboBox cb)
         {
             string consulta = "SELECT ciudad FROM ciudades";
             SQLiteConnection conn = new SQLiteConnection(url);
@@ -60,6 +60,8 @@ namespace pacientesCsharp.bbdd
             {
                 cb.Items.Add(resultados["ciudad"].ToString());
             }
+            resultados.Close();
+            conn.Close();
         }
 
         public static bool RegistrarPaciente (Paciente p)
